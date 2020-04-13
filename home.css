@@ -1,0 +1,29 @@
+body {
+    background: #efefef;
+    font-size: 14px;
+}
+
+.main {
+    width: 86%;
+    margin: auto;
+    background: #fff;
+    min-height: 90%;
+}
+
+.main_header {
+    margin-top: 65px;
+}
+
+.main_body {
+    padding: 30px 35px;
+}
+
+.manage_header {
+    text-align: left;
+}
+.link_list{
+    width: 100%;
+}
+.padding-top-20 {
+    padding-top: 20px;
+}
