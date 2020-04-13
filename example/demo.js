@@ -2,10 +2,10 @@
  * @author ghostxbh
  * @date 2020/04/01
  */
-var current = 1;
-var pageCount = 10;
 $(function () {
-    var url = 'http://140.143.126.226:9103/list';
+    var current = $("input[name='current']").val();
+    var pageCount = $("input[name='pageCount']").val();
+    var url = 'http://127.0.0.1:8080';
     //初始化加载分页
     getPage(current, pageCount, url);
 });
@@ -21,18 +21,3 @@ function getPage(pageIndex, totalPage, url) {
     });
 }
 
-function main(url, limit, page) {
-    url += `/${limit}/${page}`;
-    $.get(url, function (res, err) {
-        if (err) {
-            alert(err);
-            return;
-        }
-        current = res.current;
-        pageCount = res.pageCount;
-        var list = res.list;
-        $('#tboody').empty();
-        var html = '';
-
-    });
-}

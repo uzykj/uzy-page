@@ -1,6 +1,5 @@
 /**
- * @author ghostxbh
- * @date 2020/04/01
+ * Create by ghostxbh 2020/2/15
  */
 (function ($) {
     var ms = {
@@ -18,14 +17,14 @@
                 //上一页
                 if (parseInt(args.current) > 1) {
                     let lastPage = args.current - 1;
-                    obj.append('<a href="' + args.url + lastPage + '" class="prevPage"><p class="previous">上一页</p></a>');
+                    obj.append('<a href="javascript:void(0)" onclick="goToPage(\'' + args.url + lastPage + '\')" class="prevPage"><p class="previous">上一页</p></a>');
                 } else {
                     obj.remove('.prevPage');
                     obj.append('<span class="disabled"><p class="previous">上一页</p></span>');
                 }
                 //中间页码
                 if (parseInt(args.current) != 1 && parseInt(args.current) >= 4 && parseInt(args.pageCount) != 4) {
-                    obj.append('<a href="' + args.url + 1 + '" class="tcdNumber"><p>' + 1 + '</p></a>');
+                    obj.append('<a href="javascript:void(0)" onclick="goToPage(\'' + args.url + 1 + '\')" class="tcdNumber"><p>' + 1 + '</p></a>');
                 }
                 if (parseInt(args.current - 2) > 2 && parseInt(args.current) <= parseInt(args.pageCount) && parseInt(args.pageCount) > 5) {
                     obj.append('<span><p>...</p></span>');
@@ -41,7 +40,7 @@
                 for (; start <= end; start++) {
                     if (start <= parseInt(args.pageCount) && start >= 1) {
                         if (start != parseInt(args.current)) {
-                            obj.append('<a href="' + args.url + start + '" class="tcdNumber"><p>' + start + '</p></a>');
+                            obj.append('<a href="javascript:void(0)" onclick="goToPage(\'' + args.url + start + '\')" class="tcdNumber"><p>' + start + '</p></a>');
                         } else {
                             obj.append('<span class="current"><p class="current">' + start + '</p></span>');
                         }
@@ -51,17 +50,17 @@
                     obj.append('<span><p>...</p></span>');
                 }
                 if (parseInt(args.current) != parseInt(args.pageCount) && parseInt(args.current) < parseInt(args.pageCount) - 2 && parseInt(args.pageCount) != 4) {
-                    obj.append('<a href="' + args.url + args.pageCount + '" class="tcdNumber"><p>' + args.pageCount + '</p></a>');
+                    obj.append('<a href="javascript:void(0)" onclick="goToPage(\'' + args.url + args.pageCount + '\')" class="tcdNumber"><p>' + args.pageCount + '</p></a>');
                 }
                 //下一页
                 if (parseInt(args.current) < parseInt(args.pageCount)) {
                     let nextPage = args.current * 1 + 1;
-                    obj.append('<a href="' + args.url + nextPage + '" class="nextPage"><p class="next">下一页</p></a>');
+                    obj.append('<a href="javascript:void(0)" onclick="goToPage(\'' + args.url + nextPage + '\')" class="nextPage"><p class="next">下一页</p></a>');
                 } else {
                     obj.remove('.nextPage');
                     obj.append('<span class="disabled"><p class="next">下一页</p></span>');
                 }
-                obj.append('<span><p style="border:none;">跳转<input type="text" id="pageIndex" onkeyup="var current = $(this).val();if (isNaN(current)) {$(this).val(\'\');}if (current.indexOf(\'.\') != -1) {$(this).val(\'\');}">页</p><a href="javascript:void(0);" class="btn">确定</a></span>');
+                obj.append('<span><p style="border:none;">跳转<input type="text" id="pageIndex" onkeyup="var current = $(this).val();if (isNaN(current)) {$(this).val(\'\');}if (current.indexOf(\'.\') != -1) {$(this).val(\'\');}">页</p><a href="javascript:void(0);" class="btn" onclick="goPage(\'' + args.url + '\')">确定</a></span>');
             })();
         },
         //绑定事件
@@ -110,6 +109,13 @@
 
             })();
         },
+
+
+        init1: function (obj, args) {
+            return (function () {
+                ms.fillHtml(obj, args);
+            })();
+        }
     };
 
     $.fn.createPage = function (options) {
@@ -126,4 +132,14 @@
         }, options);
         ms.init(this, args);
     };
+
 })(jQuery, window, document);
+
+function goToPage(url) {
+}
+
+function goPage(url) {
+    var index = $('#pageIndex').val();
+    url += index;
+    goToPage(url);
+}
