@@ -35,3 +35,7 @@ function getPage(pageIndex, totalPage, url) {
     });
 }
 ```
+
+### Show
+
+<img src="./example/page_show.png" height="75" width="550">
