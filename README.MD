@@ -38,4 +38,4 @@ function getPage(pageIndex, totalPage, url) {
 
 ### Show
 
-<img src="./example/page_show.png" height="75" width="550">
+<img src="./example/page_show.png" height="100" width="550">
